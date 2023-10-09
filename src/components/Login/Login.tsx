@@ -3,6 +3,7 @@ import { useFinanceiroContext } from "@/context/financeiroContext";
 import { ReactNode, useEffect, useState } from "react";
 import CreateAccount from "../CreateAccount";
 import "./Login.css";
+import { loadEnvConfig } from "@next/env";
 
 type typeLogin = "login" | "logado" | "create";
 
@@ -38,9 +39,18 @@ export default function Login({ children }: { children: ReactNode }) {
     return <div>{children}</div>;
   }
 
+  const teste = {
+    envVal: process.env.NEXT_PUBLIC_ENV_VARIABLE,
+    PROD: process.env.NEXT_PUBLIC_PROD,
+    LOCAL: process.env.NEXT_PUBLIC_LOCAL_URL_API,
+    REMOTA: process.env.NEXT_PUBLIC_PROD_URL_API,
+  };
+  console.log({ novo: process.env, teste });
+
   return (
     <div className="container-geral">
       <div className="container-img" />
+      <code>.env.local</code>
       <div className="container-menu">
         {logado === "create" ? (
           <CreateAccount onCancel={() => setLogado("login")} />

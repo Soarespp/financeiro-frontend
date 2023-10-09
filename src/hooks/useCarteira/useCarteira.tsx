@@ -1,7 +1,5 @@
+import { URL_CARTEIRA, URL_CONEXAO } from "@/utils/constantes";
 import { useState } from "react";
-
-const URL_BASE = "http://localhost:8000";
-const URL_CARTEIRA = "/carteira";
 
 export type carteiraData = {
   _id: string;
@@ -21,7 +19,7 @@ export interface CarteiraType {
 }
 
 export default function useCarteira() {
-  const URL_API = `${URL_BASE}${URL_CARTEIRA}`;
+  const URL_API = `${URL_CONEXAO}${URL_CARTEIRA}`;
   const [carteira, setCarteira] = useState<carteiraData>();
 
   const getCarteira = async (user: string) => {
@@ -35,7 +33,7 @@ export default function useCarteira() {
   };
 
   const cadastrarCarteira = async (carteira: any) => {
-    await fetch(`${URL_BASE}${URL_CARTEIRA}`, {
+    await fetch(`${URL_CONEXAO}${URL_CARTEIRA}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(carteira),
@@ -49,7 +47,7 @@ export default function useCarteira() {
   };
 
   const updateCarteira = async (carteira: any) => {
-    await fetch(`${URL_BASE}${URL_CARTEIRA}?_id=${carteira._id}`, {
+    await fetch(`${URL_CONEXAO}${URL_CARTEIRA}?_id=${carteira._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(carteira),
@@ -63,7 +61,7 @@ export default function useCarteira() {
   };
 
   const deleteCarteira = async (idCarteira: any, user: string) => {
-    await fetch(`${URL_BASE}${URL_CARTEIRA}/${idCarteira}`, {
+    await fetch(`${URL_CONEXAO}${URL_CARTEIRA}/${idCarteira}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })

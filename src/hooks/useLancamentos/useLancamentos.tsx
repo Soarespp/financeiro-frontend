@@ -1,13 +1,10 @@
+import { URL_CONEXAO, URL_LANCAMENTOS } from "@/utils/constantes";
 import { getDataVencida } from "@/utils/fucDatas";
-import { endOfMonth, isBefore } from "date-fns";
 import { useState } from "react";
 
 interface LancamentosProps {
   user: string | undefined;
 }
-
-const URL_BASE = "http://localhost:8000";
-const URL_LANCAMENTOS = "/lancamentos";
 
 export type typeLancamentos = {
   _id: string;
@@ -24,7 +21,7 @@ export type typeLancamentos = {
 };
 
 export default function useLancamentos({ user }: LancamentosProps) {
-  const URL_API = `${URL_BASE}${URL_LANCAMENTOS}?user=${user}`;
+  const URL_API = `${URL_CONEXAO}${URL_LANCAMENTOS}?user=${user}`;
   const [lancamentos, setLancamentos] = useState<typeLancamentos>();
 
   const getLancamentos = async () => {
@@ -42,7 +39,7 @@ export default function useLancamentos({ user }: LancamentosProps) {
   };
 
   const cadastrarLancamento = async (lancamento: any) => {
-    await fetch(`${URL_BASE}${URL_LANCAMENTOS}`, {
+    await fetch(`${URL_CONEXAO}${URL_LANCAMENTOS}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...lancamento, user: user }),
@@ -56,7 +53,7 @@ export default function useLancamentos({ user }: LancamentosProps) {
   };
 
   const updateLancamento = async (lancamento: any) => {
-    await fetch(`${URL_BASE}${URL_LANCAMENTOS}?_id=${lancamento._id}`, {
+    await fetch(`${URL_CONEXAO}${URL_LANCAMENTOS}?_id=${lancamento._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...lancamento, user: user }),
@@ -70,7 +67,7 @@ export default function useLancamentos({ user }: LancamentosProps) {
   };
 
   const deleteLancamento = async (idLancamento: any) => {
-    await fetch(`${URL_BASE}${URL_LANCAMENTOS}/${idLancamento}`, {
+    await fetch(`${URL_CONEXAO}${URL_LANCAMENTOS}/${idLancamento}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })

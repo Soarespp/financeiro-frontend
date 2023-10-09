@@ -1,7 +1,7 @@
 "use client";
 
 import { useParcelados } from "@/hooks";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 
 export interface ParceladoProviderType {
   parcelados: any;

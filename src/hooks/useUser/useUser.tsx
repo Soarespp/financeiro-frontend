@@ -1,7 +1,5 @@
+import { URL_CONEXAO, URL_USER } from "@/utils/constantes";
 import { useEffect, useState } from "react";
-
-const URL_BASE = "http://localhost:8000";
-const URL_USER = "/user";
 
 export type userData = {
   _id: string;
@@ -20,7 +18,7 @@ export interface interfaceUsuario {
 }
 
 export default function useUser() {
-  const URL_API = `${URL_BASE}${URL_USER}`;
+  const URL_API = `${URL_CONEXAO}${URL_USER}`;
   const [usuario, setUsuario] = useState<userData | undefined>();
 
   const logoutUser = () => setUsuario(undefined);
